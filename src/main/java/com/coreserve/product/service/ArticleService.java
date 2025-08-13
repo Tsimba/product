@@ -1,7 +1,5 @@
 package com.coreserve.product.service;
 
-import com.coreserve.product.dto.ArticleDto;
-import com.coreserve.product.mappper.ArticleMapper;
 import com.coreserve.product.modele.Article;
 import com.coreserve.product.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
