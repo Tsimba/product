@@ -38,8 +38,8 @@ public class ArticleDto implements Serializable {
 
     private TypePrix typePrix;
 
-    public ArticleDto() {
-    }
+//    public ArticleDto() {
+//    }
 
     public ArticleDto(Long id, String name, String code, FournisseurDto fournisseur, Double prix, Article_Type type, String conditionnement, TypePrix typePrix, Date creationDate, Date modifyDate) {
         this.id = id;

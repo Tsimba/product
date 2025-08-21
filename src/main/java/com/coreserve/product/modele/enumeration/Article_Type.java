@@ -1,8 +1,10 @@
 package com.coreserve.product.modele.enumeration;
 
 public enum Article_Type {
-    BOISSON_HYGINIEQUE("BH", "Boisson hygiènique"),
-    BOISSON_ALCOOLIQUE("BA", "Boisson alcoolique"),;
+    BOISSON_HYGINIEQUE("BH", "BOISSON HYGIENIQUE"),
+    BOISSON_ALCOOLIQUE("BA", "BOISSON ALCOOLIQUE"),
+    CONDITIONNEMENT("CD", "CONDITIONNEMENT"),
+    ;
 
     private final String code;
     private final String message;

@@ -9,7 +9,8 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper(componentModel="spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,  uses = {FournisseurMapper.class})
+//@Mapper(componentModel="spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,  uses = {FournisseurMapper.class})
+@Mapper(componentModel="spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ArticleMapper {
     ArticleMapper INSTANCE = Mappers.getMapper(ArticleMapper.class);
 
