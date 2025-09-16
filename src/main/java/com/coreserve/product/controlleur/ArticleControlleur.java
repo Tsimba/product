@@ -42,9 +42,14 @@ public class ArticleControlleur {
         return  ResponseEntity.ok(articleMapper.articleToDto(articleService.getArticleById(id)));
     }
 
-    @GetMapping("/getTest")
-    public String getTest() {
-        return  "TEST EEE";
+    @GetMapping("/get/category")
+    public ResponseEntity<List<ArticleDto>> getbyCategory(@RequestParam String category) {
+        return  ResponseEntity.ok(articleMapper.articleListToDtoList(articleService.findArticleByConditionnement(category)));
+    }
+
+    @GetMapping("/get/category/type")
+    public ResponseEntity<List<ArticleDto>> getbyCategoryAndType(@RequestParam String category, @RequestParam String type) {
+        return  ResponseEntity.ok(articleMapper.articleListToDtoList(articleService.findArticleByConditionnementAndType(category, type)));
     }
 
     @PostMapping(path = "/create")
@@ -52,12 +57,7 @@ public class ArticleControlleur {
 
         Article article = articleMapper.dtoToArticle(articleDto);
         Fournisseur fournisseur = fournisseurService.getFournisseursById(article.getFournisseur().getId());
-        if (fournisseur == null) {
-
-        }
         article.setFournisseur(fournisseur);
-
-
 
         Article articleValue =  articleService.createArticle(article);
         ArticleDto articleDtoFinal =  articleMapper.articleToDto(articleValue);

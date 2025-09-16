@@ -1,6 +1,7 @@
 package com.coreserve.product.service;
 
 import com.coreserve.product.modele.Article;
+import com.coreserve.product.modele.enumeration.Article_Type;
 import com.coreserve.product.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -35,5 +36,27 @@ public class ArticleService {
 
     public void deleteArticle(Article article) {
         articleRepository.delete(article);
+    }
+
+    public List<Article> findArticleByConditionnement(String category){
+        return articleRepository.findArticleByConditionnement(category);
+    }
+
+    public List<Article> findArticleByConditionnementAndType(String category, String type){
+
+        return articleRepository.findArticleByConditionnementAndType(category, getArticleType(type));
+    }
+
+    private Article_Type getArticleType(String type) {
+        switch (type) {
+            case "CD":
+                return Article_Type.CONDITIONNEMENT;
+            case "BH":
+                return Article_Type.BOISSON_HYGINIEQUE;
+            case "BA":
+                return Article_Type.BOISSON_ALCOOLIQUE;
+            default:
+                return null;
+        }
     }
 }

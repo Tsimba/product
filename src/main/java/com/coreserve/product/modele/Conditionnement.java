@@ -14,14 +14,17 @@ public class Conditionnement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "cdt_name")
-    private String name;
+    @Column(name = "cdt_art_id")
+    private Long idArticle;
 
-    @Column(name = "cdt_code")
-    private String code;
+    @Column(name = "cdt_id_art_btl")
+    private Long articleBtl;
 
-    @Column(name = "cdt_type")
-    private String type;
+    @Column(name = "cdt_id_art_cgt")
+    private Long articleCgt;
+
+    @Column(name = "cdt_nbr_btl")
+    private Long nbreBtl;
 
 
 }

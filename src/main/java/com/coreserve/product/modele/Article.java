@@ -1,5 +1,6 @@
 package com.coreserve.product.modele;
 
+import com.coreserve.product.converter.ArticleTypeConverter;
 import com.coreserve.product.modele.enumeration.Article_Type;
 import com.coreserve.product.modele.enumeration.TypePrix;
 import jakarta.persistence.*;
@@ -33,11 +34,15 @@ public class Article {
     @JoinColumn(name = "frs_id")
     private Fournisseur fournisseur;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cdt_id")
+    private Conditionnement condition;
+
     @Column(name = "art_prix")
     private Double prix;
 
     @Column(name = "art_type")
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = ArticleTypeConverter.class)
     private Article_Type type;
 
     @Column(name = "art_conditionnement")
@@ -46,6 +51,10 @@ public class Article {
     @Column(name = "art_type_prix")
     @Enumerated(EnumType.STRING)
     private TypePrix typePrix;
+
+
+    @Column(name = "art_actif")
+    private boolean isActif;
 
     @CreationTimestamp
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -57,11 +66,6 @@ public class Article {
     @LastModifiedDate
     @UpdateTimestamp
     private Date modifyDate;
-
-
-
-
-
 
 
 }
