@@ -15,7 +15,7 @@ import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(path ="/v1/prix", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+@RequestMapping(path ="/v1/prix")
 @RequiredArgsConstructor
 @CommonsLog
 public class PrixControlleur {
@@ -45,7 +45,7 @@ public class PrixControlleur {
     public void deletePrix(@RequestParam Long id){
         Prix prix = prixService.getPrixById(id);
         if(prix != null){
-            prixService.deletePrixById(id);
+            prixService.deletePrixById(prix.getId());
         }
 
     }

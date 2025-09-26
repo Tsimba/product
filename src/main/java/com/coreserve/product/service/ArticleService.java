@@ -1,6 +1,7 @@
 package com.coreserve.product.service;
 
 import com.coreserve.product.modele.Article;
+import com.coreserve.product.modele.Prix;
 import com.coreserve.product.modele.enumeration.Article_Type;
 import com.coreserve.product.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,7 +28,13 @@ public class ArticleService {
         return articleRepository.findAll();
     }
 
+    @Transactional
     public  Article createArticle(Article article) {
+        if(!article.getPrixList().isEmpty()){
+            for(Prix prix : article.getPrixList() ){
+                prix.setArticle(article);
+            }
+        }
         return articleRepository.save(article);
     }
 

@@ -15,7 +15,7 @@ import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(path ="/v1/conditionnement", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+@RequestMapping(path ="/v1/conditionnement")
 @RequiredArgsConstructor
 @CommonsLog
 public class ConditionnementControlleur {

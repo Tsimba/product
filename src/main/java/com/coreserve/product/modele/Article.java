@@ -3,6 +3,7 @@ package com.coreserve.product.modele;
 import com.coreserve.product.converter.ArticleTypeConverter;
 import com.coreserve.product.modele.enumeration.Article_Type;
 import com.coreserve.product.modele.enumeration.TypePrix;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "article")
@@ -34,12 +36,13 @@ public class Article {
     @JoinColumn(name = "frs_id")
     private Fournisseur fournisseur;
 
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Prix> prixList;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "cdt_id")
     private Conditionnement condition;
-
-    @Column(name = "art_prix")
-    private Double prix;
 
     @Column(name = "art_type")
     @Convert(converter = ArticleTypeConverter.class)
@@ -66,6 +69,18 @@ public class Article {
     @LastModifiedDate
     @UpdateTimestamp
     private Date modifyDate;
+
+
+    // === utilitaires ===
+    public void addPrix(Prix prix) {
+        prixList.add(prix);
+        prix.setArticle(this); // synchronisation des 2 côtés
+    }
+
+    public void removePrix(Prix prix) {
+        prixList.remove(prix);
+        prix.setArticle(null);
+    }
 
 
 }

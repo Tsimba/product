@@ -1,5 +1,6 @@
 package com.coreserve.product.modele;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,11 +17,14 @@ public class Prix {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "prix_art_id")
-    private Long name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prix_art_id")
+    @JsonBackReference
+    private Article article;
 
-    @Column(name = "prix_type")
-    private String type;
+    @ManyToOne
+    @JoinColumn(name = "prix_type_id")
+    private PrixType type;
 
     @Column(name = "prix_valeur")
     private Long valeur;

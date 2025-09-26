@@ -1,10 +1,8 @@
 package com.coreserve.product.dto;
 
+import com.coreserve.product.modele.Article;
+import com.coreserve.product.modele.PrixType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -15,11 +13,11 @@ public class PrixDto {
 
     private Long id;
 
-    private Long name;
-
-    private String type;
+    private Article article;
 
     private Long valeur;
+
+    private PrixType type;
 
     public PrixDto(){
 
@@ -33,19 +31,19 @@ public class PrixDto {
         this.id = id;
     }
 
-    public Long getName() {
-        return name;
+    public Article getArticle() {
+        return article;
     }
 
-    public void setName(Long name) {
-        this.name = name;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 
-    public String getType() {
+    public PrixType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(PrixType type) {
         this.type = type;
     }
 

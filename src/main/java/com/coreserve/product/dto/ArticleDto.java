@@ -1,6 +1,7 @@
 package com.coreserve.product.dto;
 
 import com.coreserve.product.modele.Fournisseur;
+import com.coreserve.product.modele.Prix;
 import com.coreserve.product.modele.enumeration.Article_Type;
 import com.coreserve.product.modele.enumeration.TypePrix;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 @Data
@@ -31,7 +33,7 @@ public class ArticleDto implements Serializable {
 
     private FournisseurDto fournisseur;
 
-    private Double prix;
+    private List<Prix> prixList;
 
     private Article_Type type;
 
@@ -47,14 +49,13 @@ public class ArticleDto implements Serializable {
 //    public ArticleDto() {
 //    }
 
-    public ArticleDto(Long id, String name, String code, FournisseurDto fournisseur, Double prix, Article_Type type, String conditionnement, TypePrix typePrix, Date creationDate, Date modifyDate, boolean actif,
-
+    public ArticleDto(Long id, String name, String code, FournisseurDto fournisseur, List<Prix> prixList, Article_Type type, String conditionnement, TypePrix typePrix, Date creationDate, Date modifyDate, boolean actif,
                       ConditionnementDto condition) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.fournisseur = fournisseur;
-        this.prix = prix;
+        this.prixList = prixList;
         this.type = type;
         this.conditionnement = conditionnement;
         this.typePrix = typePrix;
@@ -96,12 +97,12 @@ public class ArticleDto implements Serializable {
         this.fournisseur = fournisseur;
     }
 
-    public Double getPrix() {
-        return prix;
+    public List<Prix> getPrixList() {
+        return prixList;
     }
 
-    public void setPrix(Double prix) {
-        this.prix = prix;
+    public void setPrixList(List<Prix> prixList) {
+        this.prixList = prixList;
     }
 
     public Article_Type getType() {
