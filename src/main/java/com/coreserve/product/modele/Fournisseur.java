@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "fournisseur")
@@ -24,6 +25,9 @@ public class Fournisseur {
 
     @Column(name = "frs_code")
     private String code;
+
+    @OneToMany(mappedBy = "fournisseur", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Article> articles;
 
     @CreationTimestamp
     @Column(name = "creation_date", updatable = false)

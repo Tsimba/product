@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "facture")
 @Getter
@@ -19,16 +21,18 @@ public class Facture {
     @Column(name = "fact_reference")
     private String reference;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "art_id")
-    private Article article;
+    private List<Article> article;
+
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "stk_id")
-    private Stock stock;
+    private Client client;
 
-    @Column(name = "fact_prix")
-    private Double prix;
+//    @Column(name = "fact_prix")
+//    private Double prix;
 
     @Column(name = "fact_remise")
     private Double remise;

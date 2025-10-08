@@ -37,8 +37,7 @@ public class Client {
     @Column(name = "last_modify_date")
     private Date modifyDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "addr_id")
-    private Addresse addresse;
+    @Column(name = "client_address")
+    private String addresse;
 
 }

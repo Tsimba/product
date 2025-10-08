@@ -65,12 +65,14 @@ public class ArticleControlleur {
     }
 
 
-    @DeleteMapping("/delete")
-    public void deleteArticle(@RequestParam Long id) {
-         Article article = articleService.getArticleById(id);
+    @DeleteMapping("/delete/{articleId}")
+    public ResponseEntity<?> deleteArticle(@PathVariable("articleId") Long articleId) {
+         Article article = articleService.getArticleById(articleId);
          if(article != null) {
              articleService.deleteArticle(article);
          }
+
+        return ResponseEntity.noContent().build();
     }
 
 

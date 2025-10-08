@@ -32,7 +32,7 @@ public class Article {
     @Column(name = "art_code")
     private String code;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "frs_id")
     private Fournisseur fournisseur;
 
