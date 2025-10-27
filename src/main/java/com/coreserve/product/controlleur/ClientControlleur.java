@@ -50,6 +50,10 @@ public class ClientControlleur {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/search/name")
+    ResponseEntity<List<ClientDto>> searchClientByName(@RequestParam String name) {
+        return ResponseEntity.ok(clientMapper.articleListToDtoList(clientService.searchByName(name)));
+    }
 
 
 }

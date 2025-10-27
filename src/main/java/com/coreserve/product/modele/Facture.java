@@ -28,7 +28,7 @@ public class Facture {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "stk_id")
+    @JoinColumn(name = "client_id")
     private Client client;
 
 //    @Column(name = "fact_prix")
