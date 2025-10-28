@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
-    @Query("SELECT c FROM Client c WHERE LOWER(c.lastname) LIKE LOWER(CONCAT(:name, '%'))")
+    @Query("SELECT c FROM Client c WHERE LOWER(c.lastname) LIKE LOWER(CONCAT('%',:name, '%'))")
     List<Client> searchByName(@Param("name") String name);
 
 }

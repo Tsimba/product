@@ -1,6 +1,7 @@
 package com.coreserve.product.repository;
 
 import com.coreserve.product.modele.Article;
+import com.coreserve.product.modele.Client;
 import com.coreserve.product.modele.enumeration.Article_Type;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,6 +26,10 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
             "and a.type = :type"
     )
     List<Article> findArticleByConditionnementAndType(@Param("category") String category, @Param("type") Article_Type type);
+
+
+    @Query("SELECT a FROM Article a WHERE LOWER(a.name) LIKE LOWER(CONCAT('%',:name, '%'))")
+    List<Article> filterByName(@Param("name") String name);
 
 
 }

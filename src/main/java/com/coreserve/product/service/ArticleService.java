@@ -55,6 +55,10 @@ public class ArticleService {
         return articleRepository.findArticleByConditionnementAndType(category, getArticleType(type));
     }
 
+    public List<Article> filterArticleByName(String nameFilter){
+        return articleRepository.filterByName(nameFilter);
+    }
+
     private Article_Type getArticleType(String type) {
         switch (type) {
             case "CD":

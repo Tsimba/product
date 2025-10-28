@@ -75,6 +75,10 @@ public class ArticleControlleur {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/filter/name")
+    public ResponseEntity<List<ArticleDto>> filterName(@RequestParam String nameFilter) {
+        return  ResponseEntity.ok(articleMapper.articleListToDtoList(articleService.filterArticleByName(nameFilter)));
+    }
 
 
 }
